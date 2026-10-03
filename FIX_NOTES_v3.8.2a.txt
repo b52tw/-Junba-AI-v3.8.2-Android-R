@@ -1,0 +1,16 @@
+Junba AI Transcriber v3.8.2a 修正摘要
+
+1. Android 所有模式失敗：
+   File.createTempFile("j_", ...) -> Prefix string too short
+   Java 暫存檔 prefix 至少 3 字元。已改為 "jun_"。
+
+2. Android assembleDebug 失敗：
+   whisper-android 與 ffmpeg-kit-audio 都包含 lib/arm64-v8a/libc++_shared.so。
+   已加入 packaging.jniLibs.pickFirsts += "**/libc++_shared.so"。
+
+3. Windows GitHub validate：
+   setup-python 使用 pip cache 時，若 requirements.txt 因瀏覽器漏傳，會先直接失敗。
+   已移除 setup-python 的 pip cache，並在 Source preflight 明確檢查 requirements.txt。
+
+4. 上傳精簡：
+   本包只保留必要原始碼與建置檔案，避免 GitHub 網頁一次上傳過多檔案。
